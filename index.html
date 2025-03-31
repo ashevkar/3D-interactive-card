@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(13deg, #ff9a9e, #fad0c4);
+            margin: 0;
+        }
+        .card {
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 20px;
+            box-shadow:20px 20px 0px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            transition: transform 0.2s ease-out;
+            perspective: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">Hover Me</div>
+    <script>
+        const card = document.querySelector('.card');
+        
+        document.addEventListener('mousemove', (e) => {            
+            let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            let yAxis = (window.innerHeight / 2 - e.pageY) /25;
+            console.log(xAxis);
+            
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        
+        card.addEventListener('mouseenter', () => {
+            // card.style.transition = 'none';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            // card.style.transition = 'transform 0.5s ease';
+            card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        });
+    </script>
+</body>
+</html>
